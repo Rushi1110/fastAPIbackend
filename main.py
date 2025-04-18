@@ -4,7 +4,11 @@ import firebase_admin
 from firebase_admin import credentials, auth, firestore
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("serviceAccountKey.json")
+import json
+import os
+firebase_json = os.getenv("FIREBASE_KEY")
+cred = credentials.Certificate(json.loads(firebase_json))
+
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
